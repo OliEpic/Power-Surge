@@ -1,0 +1,5 @@
+package com.oli.main;
+
+public class GameScreen implements Screen {
+
+}

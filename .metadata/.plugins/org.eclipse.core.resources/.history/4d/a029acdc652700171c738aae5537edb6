@@ -1,0 +1,41 @@
+package com.oli.game;
+
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.oli.main.GameScreen;
+import com.oli.main.Main;
+
+public class MGame extends GameScreen {
+	
+	SpriteBatch batch;
+	Texture background;
+	OrthographicCamera camera;
+
+	public MGame(Main game) {
+		super(game);
+	}
+	
+	@Override
+	public void show() {
+		
+		batch = new SpriteBatch();
+		camera = new OrthographicCamera(1280, 700);
+		background = new Texture("background.png");
+		
+	}
+	
+	@Override
+	public void render(float delta) {
+		
+		camera.update();
+		
+		batch.begin();
+		
+		batch.draw(background, 0, 0);
+		
+		batch.end();
+		
+	}
+
+}

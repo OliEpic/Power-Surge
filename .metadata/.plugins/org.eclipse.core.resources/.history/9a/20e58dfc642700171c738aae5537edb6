@@ -1,0 +1,29 @@
+package com.oli.game;
+
+import java.util.Random;
+
+public class TrackGenerator {
+	
+	Random random;
+	
+	//faked previous coords
+	int LastX = 0;
+	int LastY = 350;
+	
+	public TrackGenerator() {
+		
+		
+		
+	}
+	
+	public int[] GenerateSingleDebug() {
+		
+		int[] coords = new int[2];
+		
+		coords[0] = LastX + 1;
+		
+		return coords;
+		
+	}
+
+}

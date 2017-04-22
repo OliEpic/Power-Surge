@@ -1,0 +1,27 @@
+package com.oli.main;
+
+import com.badlogic.gdx.Screen;
+
+public class ScreenManager {
+	
+	private Main game;
+	
+	public void init(Main game) {
+		
+		this.game = game;
+		
+	}
+	
+	public void SetScreen(GameScreen screen) {
+		
+		Screen CurrentScene = game.getScreen();
+		
+		game.setScreen(screen);
+		
+		if (currentScreen != null) {
+            currentScreen.dispose();
+        }
+		
+	}
+
+}

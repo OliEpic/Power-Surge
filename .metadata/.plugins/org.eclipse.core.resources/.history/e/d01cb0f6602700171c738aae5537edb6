@@ -1,0 +1,29 @@
+package com.oli.game;
+
+import com.badlogic.gdx.graphics.Texture;
+import com.oli.main.GameScreen;
+import com.oli.main.Main;
+
+public class MGame extends GameScreen {
+	
+	Texture background;
+
+	public MGame(Main game) {
+		super(game);
+	}
+	
+	@Override
+	public void show() {
+		
+		background = new Texture("background.png");
+		
+	}
+	
+	@Override
+	public void render(float delta) {
+		
+		
+		
+	}
+
+}

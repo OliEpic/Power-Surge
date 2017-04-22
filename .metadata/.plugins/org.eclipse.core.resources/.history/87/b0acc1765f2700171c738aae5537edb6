@@ -1,0 +1,11 @@
+package com.oli.main;
+
+public class ScreenManager {
+	
+	public void SetScreen(GameScreen screen) {
+		
+		
+		
+	}
+
+}

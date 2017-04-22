@@ -1,0 +1,42 @@
+package com.oli.game;
+
+import java.util.Random;
+
+import com.badlogic.gdx.utils.Array;
+
+public class TrackGenerator {
+	
+	Random random;
+	
+	//faked previous coords
+	int LastX = 0;
+	int LastY = 350;
+	
+	public TrackGenerator() {
+		
+		
+		
+	}
+	
+	public int[] NextCoord() {
+		
+		int[] coords = new int[2];
+		
+		coords[0] = LastX + 1;
+		coords[1] = LastY;
+		
+		return coords;
+		
+	}
+	
+	public Array<int[]> GenerateSingleDebug() {
+		
+		Array<int[]> Track = new Array<int[]>();
+		
+		Track.add(value);
+		
+		return Track;
+		
+	}
+
+}

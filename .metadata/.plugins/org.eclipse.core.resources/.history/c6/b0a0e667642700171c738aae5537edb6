@@ -1,0 +1,17 @@
+package com.oli.game;
+
+import java.util.Random;
+
+public class TrackGenerator {
+	
+	Random random;
+	
+	public TrackGenerator() {
+		
+		
+		
+	}
+	
+	public int[][] GenerateSingleDebug()
+
+}

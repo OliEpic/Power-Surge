@@ -1,0 +1,19 @@
+package com.oli.main;
+
+public class ScreenManager {
+	
+	private Main game;
+	
+	public void init(Main game) {
+		
+		this.game = game
+		
+	}
+	
+	public void SetScreen(GameScreen screen) {
+		
+		
+		
+	}
+
+}

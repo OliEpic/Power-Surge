@@ -1,0 +1,7 @@
+package com.oli.game;
+
+import com.oli.main.GameScreen;
+
+public class Game extends GameScreen {
+
+}
