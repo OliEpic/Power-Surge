@@ -1,0 +1,23 @@
+package com.oli.game;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+public class Music {
+	
+	BitmapFont font;
+	
+	public Music() {
+		
+		font = new BitmapFont(Gdx.files.internal("one.fnt"), Gdx.files.internal("one.png"), false);
+		
+	}
+	
+	public void play() {
+		
+		
+		
+	}
+
+}

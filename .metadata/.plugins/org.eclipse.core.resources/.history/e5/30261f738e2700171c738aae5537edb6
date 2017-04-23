@@ -1,0 +1,51 @@
+package com.oli.menu;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.oli.main.GameScreen;
+import com.oli.main.Main;
+
+public class SplashScreen extends GameScreen {
+
+	Texture splash;
+	SpriteBatch batch;
+	Main main;
+	
+	public SplashScreen(Main game) {
+		super(game);
+	}
+	
+	@Override
+	public void show() {
+		
+		batch = new SpriteBatch();
+		splash = new Texture("Logo.png");
+		main = new Main();
+		
+	}
+	
+	@Override
+	public void render(float delta) {
+		
+		batch.begin();
+		batch.draw(splash, 0, 0);
+		batch.end();
+		
+		if (Gdx.input.isTouched()) {
+			
+			
+			
+		}
+		
+	}
+	
+	@Override
+	public void dispose() {
+		
+		batch.dispose();
+		splash.dispose();
+		
+	}
+
+}

@@ -1,0 +1,24 @@
+package com.oli.game;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+
+public class Music {
+	
+	Music one;
+	Music two;
+	Music three;
+	
+	public Music() {
+		
+		one = Gdx.audio.newMusic(Gdx.files.internal("one.mp3"));
+		
+	}
+	
+	public void play() {
+		
+		
+		
+	}
+
+}

@@ -4,7 +4,7 @@ import com.badlogic.gdx.Screen;
 
 public class GameScreen implements Screen {
 	
-	Main game;
+	protected Main game;
 	
 	public GameScreen(Main game) {
 		

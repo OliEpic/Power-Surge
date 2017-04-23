@@ -3,25 +3,22 @@ package com.oli.main;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.oli.game.MGame;
-import com.oli.menu.MainMenu;
+import com.oli.menu.SplashScreen;
 
 public class Main extends Game {
 	
-	MainMenu mainmenu;
-	MGame game;
+	SplashScreen splashscreen;
 	
-	ScreenManager _ScreenManager;
+	public ScreenManager _ScreenManager;
 	
 	@Override
 	public void create () {
 		
-		mainmenu = new MainMenu(this);
-		game = new MGame(this);
+		splashscreen = new SplashScreen(this);
 		
 		_ScreenManager = new ScreenManager();
 		_ScreenManager.init(this);
-		_ScreenManager.SetScreen(game);
+		_ScreenManager.SetScreen(splashscreen);
 		
 	}
 

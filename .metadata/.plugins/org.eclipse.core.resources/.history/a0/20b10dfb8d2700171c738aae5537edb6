@@ -1,0 +1,29 @@
+package com.oli.menu;
+
+import com.badlogic.gdx.graphics.Texture;
+import com.oli.main.GameScreen;
+import com.oli.main.Main;
+
+public class SplashScreen extends GameScreen {
+
+	Texture splash;
+	
+	public SplashScreen(Main game) {
+		super(game);
+	}
+	
+	@Override
+	public void show() {
+		
+		splash = new Texture("Logo.png");
+		
+	}
+	
+	@Override
+	public void render(float delta) {
+		
+		
+		
+	}
+
+}

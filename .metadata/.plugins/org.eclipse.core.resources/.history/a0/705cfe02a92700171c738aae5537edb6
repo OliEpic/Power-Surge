@@ -1,0 +1,40 @@
+package com.oli.game;
+
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
+public class Player extends Sprite {
+	
+	int x;
+	int y;
+	Texture spritesheet;
+	Texture[] frames;
+	Animation<Texture> animation;
+	float elapsedtime;
+	
+	public Player() {
+		
+		spritesheet = new Texture("ship.png");
+		TextureRegion[][] temp = TextureRegion.split(spritesheet, 300, 232);
+		frames = new TextureRegion[2];
+		frames[0] = temp[0][0];
+		frames[1] = temp[0][1];
+		animation = new Animation<TextureRegion>(1.5f, frames);
+		setPosition(32, 32);
+		
+		elapsedtime = 0;
+		
+	}
+	
+	public void draw(SpriteBatch batch, float delta) {
+		
+		elapsedtime += delta;
+		this.setRegion(animation.getKeyFrame(elapsedtime));
+		this.draw(batch);
+		
+	}
+
+}

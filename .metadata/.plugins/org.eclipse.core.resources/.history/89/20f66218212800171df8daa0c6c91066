@@ -1,0 +1,23 @@
+package com.oli.game;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+public class UI {
+	
+	BitmapFont font;
+	
+	public UI() {
+		
+		font = new BitmapFont(Gdx.files.internal("one"));
+		
+	}
+	
+	public void draw(SpriteBatch batch) {
+		
+		font.draw(batch, "Score: ", 64, 700, start, end, targetWidth, halign, wrap, truncate)
+		
+	}
+
+}

@@ -1,0 +1,7 @@
+package com.oli.menu;
+
+import com.oli.main.GameScreen;
+
+public class SplashScreen extends GameScreen {
+
+}

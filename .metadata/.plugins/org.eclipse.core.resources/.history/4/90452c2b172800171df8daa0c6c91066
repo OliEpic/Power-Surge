@@ -1,0 +1,24 @@
+package com.oli.game;
+
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+public class Background {
+	
+	Texture one;
+	Texture two;
+	
+	public Background() {
+		
+		one = new Texture("background.png");
+		two = new Texture("background.png");
+		
+	}
+	
+	public void draw(SpriteBatch batch) {
+		
+		
+		
+	}
+
+}

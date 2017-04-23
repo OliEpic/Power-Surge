@@ -1,0 +1,7 @@
+package com.oli.game;
+
+public abstract class SpiderController {
+	
+	
+
+}

@@ -1,0 +1,23 @@
+package com.oli.game;
+
+import java.util.TimerTask;
+
+public class Spawner {
+	
+	TimerTask SpawnSpider;
+	
+	public Spawner() {
+		
+		SpawnSpider = new TimerTask() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		};
+		
+	}
+
+}

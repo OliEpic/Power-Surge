@@ -1,0 +1,24 @@
+package com.oli.game;
+
+import java.awt.Font;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+
+public class UI {
+	
+	BitmapFont font;
+	
+	public UI() {
+		
+		font = new BitmapFont(Gdx.files.internal("one"));
+		
+	}
+	
+	public void draw(SpriteBatch batch) {
+		
+		
+		
+	}
+
+}

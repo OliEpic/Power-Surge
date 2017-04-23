@@ -1,0 +1,9 @@
+package com.oli.game;
+
+public class Enemy extends SpiderController {
+
+	public Enemy(int x, int y, int speed) {
+		super(x, y, speed);
+	}
+
+}

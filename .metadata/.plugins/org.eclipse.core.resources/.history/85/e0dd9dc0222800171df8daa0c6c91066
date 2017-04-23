@@ -1,0 +1,24 @@
+package com.oli.game;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+
+public class Music {
+	
+	Music one;
+	Music two;
+	Music three;
+	
+	public Music() {
+		
+		one = new BitmapFont(Gdx.files.internal("one.fnt"), Gdx.files.internal("one.png"), false);
+		
+	}
+	
+	public void play() {
+		
+		
+		
+	}
+
+}

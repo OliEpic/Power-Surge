@@ -1,1 +1,10 @@
 1492868135785	Rename type 'Game'
+1492879751265	Rename field 'LastX'
+1492879760834	Rename field 'LastY'
+1492879777835	Rename field 'LastY2'
+1492946589311	Delete element
+1492948630328	Rename type 'Bullet'
+1492951764911	Rename type 'Music'
+1492953508226	Rename type 'SexySpiders'
+1492960440555	Rename type 'SpiderController'
+1492960468404	Rename type 'Enemy'

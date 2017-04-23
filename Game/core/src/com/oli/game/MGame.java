@@ -1,7 +1,10 @@
 package com.oli.game;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
@@ -15,11 +18,20 @@ public class MGame extends GameScreen {
 	Texture copper;
 	OrthographicCamera camera;
 	ShapeRenderer DebugRenderer;
-	TrackGenerator _TrackGenerator;
-	Array<Array<int[]>> AllTracks;
+	//TrackGenerator _TrackGenerator;
+	Parts parts;
+	/*Array<Array<int[]>> AllTracks;
 	Array<int[]> Track1;
 	Array<int[]> Track2;
-	Array<int[]> Track3;
+	Array<int[]> Track3;*/
+	Player player;
+	int scrollX = 0;
+	public static int score = 0;
+	public static Array<Bullet> bullets;
+	public static Array<Spider> spiders;
+	UI ui;
+	MusicController music;
+	Spawner spawner;
 
 	public MGame(Main game) {
 		super(game);
@@ -32,37 +44,79 @@ public class MGame extends GameScreen {
 		camera = new OrthographicCamera(1280, 700);
 		background = new Texture("background.png");
 		copper = new Texture("copper.png");
-		DebugRenderer = new ShapeRenderer();
-		_TrackGenerator = new TrackGenerator();
+		
+		background.setWrap(TextureWrap.Repeat, TextureWrap.Repeat);
+		//_TrackGenerator = new TrackGenerator();
+		bullets = new Array<Bullet>();
+		spiders = new Array<Spider>();
+		parts = new Parts();
+		player = new Player();
+		ui = new UI();
+		music = new MusicController();
+		spawner = new Spawner(1);
 		
 		camera.position.x = 640;
 		camera.position.y = 350;
-		DebugRenderer.setAutoShapeType(true);
 		
-		AllTracks = _TrackGenerator.GenerateTracks();
+		/*AllTracks = _TrackGenerator.GenerateTracks();
 		Track1 = AllTracks.get(0);
-		//Track2 = AllTracks.get(1);
+		Track2 = AllTracks.get(1);*/
+		
+		
+		//TODO re-enable music
+		//music.play();
 		
 	}
 	
 	@Override
 	public void render(float delta) {
 		
+		scrollX += 2;
+		
 		batch.setProjectionMatrix(camera.combined);
-		DebugRenderer.setProjectionMatrix(camera.combined);
+		//camera.position.x += 20;
 		camera.update();
 		
 		batch.begin();
 		
-		batch.draw(background, 0, 0);
+		batch.draw(background, 0, 0, scrollX, 0, 1280, 700);
+		//batch.draw(parts.parts.get(0), 50, 50);
+		player.draw(batch, delta);
 		
-		for (int[] i : Track1) {
+		/*for (int[] i : Track1) {
 			
 			batch.draw(copper, i[0], i[1]);
 		
 		}
 		
+		
+		for (int[] i : Track2) {
+			
+			batch.draw(copper, i[0], i[1]);
+		
+		}*/
+		
+		for (Bullet b : bullets) {
+			
+			b.render(batch);
+			
+		}
+		
+		for (Spider e : spiders) {
+			
+			e.draw(batch);
+			
+		}
+		
+		ui.draw(batch);
+		
 		batch.end();
+		
+		if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
+			
+			music.PlayShoot();
+			
+		}
 		
 	}
 	

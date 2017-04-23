@@ -1,0 +1,14 @@
+package com.oli.game;
+
+public class Background {
+	
+	 bck1=new Texture(Gdx.files.internal("fondo.jpg"));
+	 bck2=new Texture(Gdx.files.internal("fondo.jpg"));
+	
+	public Background() {
+		
+		
+		
+	}
+
+}

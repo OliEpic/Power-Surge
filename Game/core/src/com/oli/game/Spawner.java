@@ -1,0 +1,34 @@
+package com.oli.game;
+
+import java.util.Random;
+
+import com.badlogic.gdx.utils.Timer;
+import com.badlogic.gdx.utils.Timer.Task;
+
+public class Spawner {
+	
+	Timer SpawnSpider;
+	Random r;
+	
+	public Spawner(int InitialDelay) {
+		
+		r = new Random();
+		SpawnSpider = new Timer();
+		
+		SpawnSpider.scheduleTask(new Task() {
+
+			@Override
+			public void run() {
+				
+				int StartingY = r.nextInt(482) + 64;
+				int StartingSpeed = 2;
+				
+				MGame.spiders.add(new Spider(1300, StartingY, StartingSpeed, "spider"));
+				
+			}
+			
+		}, InitialDelay, 15);
+		
+	}
+
+}

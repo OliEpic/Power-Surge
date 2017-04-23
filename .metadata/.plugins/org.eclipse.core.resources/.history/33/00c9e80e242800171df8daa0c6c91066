@@ -1,0 +1,34 @@
+package com.oli.game;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
+
+public class MusicController {
+	
+	Music one;
+	Music two;
+	Music three;
+	Sound shoot;
+	
+	public MusicController() {
+		
+		one = Gdx.audio.newMusic(Gdx.files.internal("one.wav"));
+		sound = Gdx.audio.newMusic(Gdx.files.internal("one.wav"));
+		one.setLooping(true);
+		
+	}
+	
+	public void play() {
+		
+		one.play();
+		
+	}
+	
+	public void PlayShoot() {
+		
+		
+		
+	}
+
+}

@@ -1,0 +1,32 @@
+package com.oli.game;
+
+import java.util.Random;
+
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+public abstract class Bullet {
+	
+	int x;
+	int y;
+	Random r;
+	Texture one;
+	Texture two;
+	Texture bullet;
+	
+	public Bullet(int x, int y) {
+		
+		this.x = x;
+		this.y = y;
+		
+	}
+	
+	public void render(SpriteBatch batch) {
+		
+		x += 3;
+		
+		batch.draw(bullet, x, y);
+		
+	}
+
+}

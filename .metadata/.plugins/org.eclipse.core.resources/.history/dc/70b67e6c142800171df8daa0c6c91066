@@ -1,0 +1,73 @@
+package com.oli.game;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+public class Player  {
+	
+	int x;
+	int y;
+	Texture one;
+	Texture two;
+	Texture[] frames;
+	Animation<Texture> animation;
+	float elapsedtime;
+	public Sprite sprite;
+	
+	public Player() {
+		
+		one = new Texture("ship.png");
+		two = new Texture("ship2.png");
+		one.setFilter(TextureFilter.MipMapLinearLinear, null);
+		frames = new Texture[2];
+		frames[0] = one;
+		frames[1] = two;
+		animation = new Animation<Texture>(0.7f, frames);
+		animation.setPlayMode(PlayMode.LOOP);
+		
+		x = 32;
+		y = 32;
+		
+		elapsedtime = 0;
+		
+	}
+	
+	public void draw(SpriteBatch batch, float delta) {
+		
+		elapsedtime += delta;
+		batch.draw(animation.getKeyFrame(elapsedtime), x, y);
+		
+		if (Gdx.input.isKeyPressed(Keys.W)) {
+			
+			y += 5;
+			
+		}
+		
+		if (Gdx.input.isKeyPressed(Keys.S)) {
+			
+			y -= 5;
+			
+		}
+		
+		if (Gdx.input.isKeyPressed(Keys.D)) {
+			
+			x += 5;
+			
+		}
+		
+		if (Gdx.input.isKeyPressed(Keys.A)) {
+			
+			x -= 5;
+			
+		} 
+
+		
+	}
+
+}

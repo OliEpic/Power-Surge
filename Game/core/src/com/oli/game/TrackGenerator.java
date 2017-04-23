@@ -8,9 +8,10 @@ public class TrackGenerator {
 	
 	Random random;
 	
-	//faked previous coords
-	int LastX = -32;
-	int LastY = 350;
+	int LastX1 = -16;
+	int LastY1 = 350;
+	int LastX2 = -80;
+	int LastY2 = 350;
 	
 	int Straight = 0;
 	int Up = 1;
@@ -21,6 +22,9 @@ public class TrackGenerator {
 	int Direction = Straight;
 	int AmountOfDirChange;
 	int DirChangeSoFar = 0;
+	
+	boolean first2 = false;
+	boolean first2up = false;
 	
 	public TrackGenerator() {
 		
@@ -36,7 +40,9 @@ public class TrackGenerator {
 		Array<int[]> Track = new Array<int[]>();
 		Array<int[]> Track2 = new Array<int[]>();
 		
-		while (XPos <= 1248) {
+		long start = System.currentTimeMillis();
+		
+		while (XPos <= 1000000) {
 			
 			if (Direction == Straight) {
 				
@@ -44,19 +50,78 @@ public class TrackGenerator {
 					
 					Direction = random.nextInt(2) + 1;
 					
+					if (!first2)
+						Direction = Down;
+					
+					first2 = true;
+					
+					LastX2 = Track2.get(Track2.size - 1)[0];
+					LastY2 = Track2.get(Track2.size - 1)[1];
+					int[] ExtraCoords = new int[2];
+					
+					if (Direction == Up) {
+						
+						ExtraCoords[0] = Track2.get(Track2.size - 1)[0] + 16;
+						ExtraCoords[1] = LastY2;
+						Track2.add(ExtraCoords);
+						
+						
+					} else if (Direction == Down) {
+						
+						Track2.removeIndex(Track2.size - 1);
+						Track2.removeIndex(Track2.size - 1);
+						Track2.removeIndex(Track2.size - 1);
+						Track2.removeIndex(Track2.size - 1);
+						Track2.removeIndex(Track2.size - 1);
+						
+						LastX2 = Track2.get(Track2.size - 1)[0];
+						LastY2 = Track2.get(Track2.size - 1)[1];
+						
+					}
+					
 					DirChangeSoFar = 0;
 					AmountOfDirChange = (random.nextInt(3) * 16) + 64;
 					
 				} else {
 					
 					int[] coords1 = new int[2];
-					coords1[0] = LastX + 16;
-					coords1[1] = LastY;
-					LastX = coords1[0];
-					LastY = coords1[1];
+					coords1[0] = LastX1 + 16;
+					coords1[1] = LastY1;
+					LastX1 = coords1[0];
+					LastY1 = coords1[1];
 					XPos = coords1[0];
 					
 					Track.add(coords1);
+					
+					LastX2 = coords1[0];
+					LastX2 = coords1[0] - 64;
+					
+					if (first2) {
+						
+						LastX2 += 128;
+						
+					} else {
+						
+						LastX2 += 80;
+						int[] extra = new int[2];
+						extra[0] = 0;
+						extra[1] = 350 - 64;
+						Track2.add(extra);
+						
+					}
+					
+					int[] coords2 = new int[2];
+					coords2[0] = LastX2;
+					coords2[1] = coords1[1] - 64;
+					LastX2 += 16;
+					
+					if (first2) {
+						
+						LastX2 -= 128;
+						
+					}
+					
+					Track2.add(coords2);
 					
 				}
 				
@@ -65,20 +130,28 @@ public class TrackGenerator {
 				if (DirChangeSoFar < AmountOfDirChange) {
 				
 					int[] coords = new int[2];
-					coords[0] = LastX;
-					coords[1] = LastY + 16;
-					LastX = coords[0];
-					LastY = coords[1];
+					coords[0] = LastX1;
+					coords[1] = LastY1 + 16;
+					LastX1 = coords[0];
+					LastY1 = coords[1];
 					XPos = coords[0];
 				
 					Track.add(coords);
+					
+					int[] coords2 = new int[2];
+					coords2[0] = LastX2;
+					coords2[1] = LastY2 + 16;
+					LastX2 = coords2[0];
+					LastY2 = coords2[1];
+			
+					Track2.add(coords2);
 					
 					DirChangeSoFar += 16;
 					
 				} else {
 					
 					LastDirectionChange[0] = XPos;
-					LastDirectionChange[1] = LastY;
+					LastDirectionChange[1] = LastY1;
 					Direction = Straight;
 					
 				}
@@ -87,21 +160,42 @@ public class TrackGenerator {
 				
 				if (DirChangeSoFar < AmountOfDirChange) {
 				
-					int[] coords = new int[2];
-					coords[0] = LastX;
-					coords[1] = LastY - 16;
-					LastX = coords[0];
-					LastY = coords[1];
-					XPos = coords[0];
+					int[] coords1 = new int[2];
+					coords1[0] = LastX1;
+					coords1[1] = LastY1 - 16;
+					LastX1 = coords1[0];
+					LastY1 = coords1[1];
+					XPos = coords1[0];
 				
-					Track.add(coords);
+					Track.add(coords1);
+					
+					int[] coords2 = new int[2];
+					coords2[0] = LastX2;
+					coords2[1] = LastY2 - 16;
+					LastX2 = coords2[0];
+					LastY2 = coords2[1];
+				
+					Track2.add(coords2);
 					
 					DirChangeSoFar += 16;
 					
 				} else {
 					
+					int DifferenceOneTwo = Track.get(Track.size - 1)[0] - Track2.get(Track2.size - 1)[0];
+					
+					for (int x = 0; x < DifferenceOneTwo + 16; x += 16) {
+						
+						System.out.println(LastY2);
+						
+						int[] coord = new int[2];
+						coord[0] = LastX2 + x;
+						coord[1] = LastY2;
+						Track2.add(coord);
+						
+					}
+					
 					LastDirectionChange[0] = XPos;
-					LastDirectionChange[1] = LastY;
+					LastDirectionChange[1] = LastY1;
 					Direction = Straight;
 					
 				}
@@ -110,8 +204,12 @@ public class TrackGenerator {
 			
 		}
 		
+		long end = System.currentTimeMillis();
+		System.out.println("Level generation took: " + (end - start) + " miliseconds");
+		
 		Array<Array<int[]>> AllTracks = new Array<Array<int[]>>();
 		AllTracks.add(Track);
+		AllTracks.add(Track2);
 		
 		return AllTracks;
 		
