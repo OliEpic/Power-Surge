@@ -1,11 +1,15 @@
 package com.oli.game;
 
+import java.awt.Rectangle;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.Timer;
+import com.badlogic.gdx.utils.Timer.Task;
 
 public class Player  {
 	
@@ -16,6 +20,10 @@ public class Player  {
 	Texture[] frames;
 	Animation<Texture> animation;
 	float elapsedtime;
+	Timer t;
+	boolean CanShoot = true;
+	public Rectangle r;
+	int health = 5;
 	
 	public Player() {
 		
@@ -26,11 +34,26 @@ public class Player  {
 		frames[1] = two;
 		animation = new Animation<Texture>(0.2f, frames);
 		animation.setPlayMode(PlayMode.LOOP);
+		r = new Rectangle(x, y, one.getWidth(), one.getHeight());
+		CanShoot = true;
+		
+		t = new Timer();
 		
 		x = 32;
 		y = 32;
 		
 		elapsedtime = 0;
+		
+		t.scheduleTask(new Task() {
+
+			@Override
+			public void run() {
+
+				CanShoot = true;
+				
+			}
+			
+		}, 0.5f, 0.5f);
 		
 	}
 	
@@ -38,6 +61,11 @@ public class Player  {
 		
 		elapsedtime += delta;
 		batch.draw(animation.getKeyFrame(elapsedtime), x, y);
+		
+		r.x = x;
+		r.y = y;
+		r.width = animation.getKeyFrame(elapsedtime).getWidth();
+		r.height = animation.getKeyFrame(elapsedtime).getHeight();
 		
 		if (Gdx.input.isKeyPressed(Keys.W)) {
 			
@@ -80,9 +108,15 @@ public class Player  {
 			
 		} 
 		
-		if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
+		if (Gdx.input.isKeyPressed(Keys.SPACE)) {
 			
-			MGame.bullets.add(new Bullet(x + one.getWidth(), y + 70));
+			if (CanShoot) {
+			
+				MGame.bullets.add(new Bullet(x + one.getWidth(), y + 70));
+				MGame.music.PlayShoot();
+				CanShoot = false;
+				
+			}
 			
 		}
 		

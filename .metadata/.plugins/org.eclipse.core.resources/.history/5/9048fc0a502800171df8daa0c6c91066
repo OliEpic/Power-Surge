@@ -1,0 +1,38 @@
+package com.oli.menu;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.oli.main.GameScreen;
+import com.oli.main.Main;
+
+public class MainMenu extends GameScreen {
+
+	Texture background;
+	SpriteBatch batch;
+	public MainMenu(Main game) {
+		super(game);
+	}
+	
+	@Override
+	public void show() {
+		
+		batch = new SpriteBatch();
+		background = new Texture("menu.png");
+		
+		
+	}
+	
+	@Override
+	public void render(float delta) {
+		
+		batch.begin();
+		
+		batch.draw(background, 0, 0);
+		
+		batch.end();
+		
+	}
+
+}

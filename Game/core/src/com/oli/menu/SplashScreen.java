@@ -3,7 +3,6 @@ package com.oli.menu;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.oli.game.MGame;
 import com.oli.main.GameScreen;
 import com.oli.main.Main;
 
@@ -11,7 +10,7 @@ public class SplashScreen extends GameScreen {
 
 	Texture splash;
 	SpriteBatch batch;
-	MGame _game;
+	MainMenu menu;
 	
 	public SplashScreen(Main game) {
 		super(game);
@@ -22,7 +21,7 @@ public class SplashScreen extends GameScreen {
 		
 		batch = new SpriteBatch();
 		splash = new Texture("Logo.png");
-		_game = new MGame(game);
+		menu = new MainMenu(game);
 		
 	}
 	
@@ -35,7 +34,7 @@ public class SplashScreen extends GameScreen {
 		
 		if (Gdx.input.isTouched()) {
 			
-			game._ScreenManager.SetScreen(_game);
+			game._ScreenManager.SetScreen(menu);
 			
 		}
 		

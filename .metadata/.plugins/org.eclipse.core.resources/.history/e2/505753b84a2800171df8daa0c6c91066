@@ -1,0 +1,48 @@
+package com.oli.menu;
+
+import java.awt.Color;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.Align;
+import com.oli.main.GameScreen;
+import com.oli.main.Main;
+
+public class Ded extends GameScreen {
+	
+	BitmapFont font;
+	SpriteBatch batch;
+	int score;
+	GlyphLayout layout;
+	
+	public Ded(Main game, int score) {
+		super(game);
+		
+		this.score = score;
+		
+	}
+	
+	@Override
+	public void show() {
+		
+		font = new BitmapFont(Gdx.files.internal("one.fnt"), Gdx.files.internal("one.png"), false);
+		batch = new SpriteBatch();
+		layout = new GlyphLayout();
+		layout.setText(font, "Score: " + score, Color.white, 350, Align.center);
+		
+	}
+	
+	@Override
+	public void render(float delta) {
+		
+		batch.begin();
+		
+		font.draw(batch, "Score: " + score, 640, 350);
+		
+		batch.end();
+		
+	}
+	
+}

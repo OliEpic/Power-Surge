@@ -1,7 +1,5 @@
 package com.oli.game;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureWrap;
@@ -10,6 +8,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
 import com.oli.main.GameScreen;
 import com.oli.main.Main;
+import com.oli.menu.Ded;
 
 public class MGame extends GameScreen {
 	
@@ -24,13 +23,15 @@ public class MGame extends GameScreen {
 	Array<int[]> Track1;
 	Array<int[]> Track2;
 	Array<int[]> Track3;*/
-	Player player;
+	public static Player player;
 	int scrollX = 0;
 	public static int score = 0;
 	public static Array<Bullet> bullets;
 	public static Array<Spider> spiders;
+	public static Array<Monster1> monster1s;
 	UI ui;
-	MusicController music;
+	public static MusicController music;
+	Ded ded;
 	Spawner spawner;
 
 	public MGame(Main game) {
@@ -49,11 +50,12 @@ public class MGame extends GameScreen {
 		//_TrackGenerator = new TrackGenerator();
 		bullets = new Array<Bullet>();
 		spiders = new Array<Spider>();
+		monster1s = new Array<Monster1>();
 		parts = new Parts();
 		player = new Player();
 		ui = new UI();
 		music = new MusicController();
-		spawner = new Spawner(1);
+		spawner = new Spawner(1, 10);
 		
 		camera.position.x = 640;
 		camera.position.y = 350;
@@ -106,15 +108,36 @@ public class MGame extends GameScreen {
 			
 			e.draw(batch);
 			
+			if (e.r.intersects(player.r)) {
+				
+				e.x += 100;
+				player.health -= 1;
+				
+			}
+			
+		}
+		
+		for (Monster1 m : monster1s) {
+			
+			m.draw(batch);
+			
+			if (m.r.intersects(player.r)) {
+				
+				m.x += 100;
+				player.health -= 1;
+				
+			}
+			
 		}
 		
 		ui.draw(batch);
 		
 		batch.end();
 		
-		if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
+		if (player.health <= 0) {
 			
-			music.PlayShoot();
+			game._ScreenManager.SetScreen(ded = new Ded(game, score));
+			
 			
 		}
 		

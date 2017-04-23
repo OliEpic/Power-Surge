@@ -8,12 +8,14 @@ import com.badlogic.gdx.utils.Timer.Task;
 public class Spawner {
 	
 	Timer SpawnSpider;
+	Timer SpawnMonster1;
 	Random r;
 	
-	public Spawner(int InitialDelay) {
+	public Spawner(int InitialDelaySpider, int InitialDelayMonster1) {
 		
 		r = new Random();
 		SpawnSpider = new Timer();
+		SpawnMonster1 = new Timer();
 		
 		SpawnSpider.scheduleTask(new Task() {
 
@@ -27,8 +29,23 @@ public class Spawner {
 				
 			}
 			
-		}, InitialDelay, 15);
+		}, InitialDelaySpider, 5);
+		
+		SpawnMonster1.scheduleTask(new Task() {
+
+			@Override
+			public void run() {
+				
+				int StartingY = r.nextInt(482) + 64;
+				int StartingSpeed = 2;
+				
+				MGame.monster1s.add(new Monster1(1300, StartingY, StartingSpeed, "monster1"));
+				
+			}
+			
+		}, InitialDelayMonster1, 10);
 		
 	}
+	
 
 }

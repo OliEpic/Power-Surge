@@ -1,0 +1,10 @@
+package com.oli.game;
+
+public class Monster1 extends EnemyController {
+
+	public Monster1(int x, int y, int speed, String type) {
+		super(x, y, speed, type);
+		
+	}
+
+}

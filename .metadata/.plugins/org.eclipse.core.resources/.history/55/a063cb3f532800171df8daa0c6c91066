@@ -1,0 +1,16 @@
+package com.oli.menu;
+
+import com.oli.main.GameScreen;
+import com.oli.main.Main;
+
+public class Options extends  GameScreen {
+
+	
+	
+	public Options(Main game) {
+		super(game);
+		
+		
+	}
+
+}

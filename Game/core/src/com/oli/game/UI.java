@@ -17,6 +17,7 @@ public class UI {
 	public void draw(SpriteBatch batch) {
 		
 		font.draw(batch, "Score: " + MGame.score, 64, 650);
+		font.draw(batch, "Lives: " + MGame.player.health, 64, 600);
 		
 	}
 

@@ -1,0 +1,46 @@
+package com.oli.menu;
+
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.oli.main.GameScreen;
+import com.oli.main.Main;
+
+public class MainMenu extends GameScreen {
+
+	Texture background;
+	Texture play;
+	Texture options;
+	Texture credits;
+	Texture exit;
+	SpriteBatch batch;
+	
+	public MainMenu(Main game) {
+		super(game);
+	}
+	
+	@Override
+	public void show() {
+		
+		batch = new SpriteBatch();
+		background = new Texture("menu.png");
+		play = new Texture("play.png");
+		options = new Texture("optionsb.png");
+		credits = new Texture("creditsb.png");
+		exit = new Texture("exit.png");
+		
+	}
+	
+	@Override
+	public void render(float delta) {
+		
+		batch.begin();
+		
+		batch.draw(background, 0, 0);
+		batch.draw(play, 220, 350);
+		batch.draw(play, 534, 350);
+		
+		batch.end();
+		
+	}
+
+}

@@ -1,0 +1,100 @@
+package com.oli.game;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+public abstract class EnemyController {
+	
+	int x;
+	int y;
+	Animation<Texture> animation;
+	float elapsedtime;
+	int speed;
+	int dir = 1;
+	String type;
+	int MinY;
+	int MaxY;
+	
+	public EnemyController(int x, int y, int speed, String type) {
+		
+		this.x = x;
+		this.y = y;
+		this.speed = speed;
+		this.type = type;
+		
+		if (type.equals("spider")) {
+			
+			Texture one;
+			Texture two;
+			Texture[] frames;
+		
+			one = new Texture("mp1.png");
+			two = new Texture("mp2.png");
+			frames = new Texture[2];
+			frames[0] = one;
+			frames[1] = two;
+			animation = new Animation<Texture>(0.2f, frames);
+			animation.setPlayMode(PlayMode.LOOP);
+		
+			MinY = 64;
+			MaxY = 700 - one.getHeight() - 64;
+			
+		} else if (type.equals("monster1")) {
+			
+			Texture one;
+			Texture two;
+			Texture three;
+			Texture[] frames;
+		
+			one = new Texture("A1.png");
+			two = new Texture("A2.png");
+			three = new Texture("A3.png")
+			frames = new Texture[2];
+			frames[0] = one;
+			frames[1] = two;
+			animation = new Animation<Texture>(0.2f, frames);
+			animation.setPlayMode(PlayMode.LOOP);
+		
+			MinY = 64;
+			MaxY = 700 - one.getHeight() - 64;
+			
+		}
+		
+		elapsedtime = 0;
+		
+	}
+	
+	public void draw(SpriteBatch batch) {
+		
+		elapsedtime += Gdx.graphics.getDeltaTime();
+		
+		if (type.equals("spider")) {
+			
+			y += (speed * dir);
+			batch.draw(animation.getKeyFrame(elapsedtime), x, y);
+		
+			x -= speed;
+		
+			if (y <= MinY) {
+				
+				dir *= -1;
+			}
+			
+			if (y >= MaxY) {	
+			
+				dir *= -1;
+			
+			}
+			
+		} else if (type.equals("monster1")) {
+			
+			
+			
+		}
+		
+	}
+
+}

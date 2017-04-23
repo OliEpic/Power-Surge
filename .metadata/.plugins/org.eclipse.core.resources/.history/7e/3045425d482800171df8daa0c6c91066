@@ -1,0 +1,19 @@
+package com.oli.menu;
+
+import com.oli.main.GameScreen;
+import com.oli.main.Main;
+
+public class Ded extends GameScreen {
+
+	public Ded(Main game) {
+		super(game);
+	}
+	
+	@Override
+	public void render(float delta) {
+		
+		
+		
+	}
+	
+}

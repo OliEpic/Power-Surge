@@ -1,5 +1,7 @@
 package com.oli.game;
 
+import java.awt.Rectangle;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -10,16 +12,15 @@ public abstract class EnemyController {
 	
 	int x;
 	int y;
-	int MinY;
-	int MaxY;
-	Texture one;
-	Texture two;
-	Texture[] frames;
 	Animation<Texture> animation;
 	float elapsedtime;
 	int speed;
 	int dir = 1;
 	String type;
+	int MinY;
+	int MaxY;
+	
+	Rectangle r;
 	
 	public EnemyController(int x, int y, int speed, String type) {
 		
@@ -28,16 +29,45 @@ public abstract class EnemyController {
 		this.speed = speed;
 		this.type = type;
 		
-		one = new Texture("mp1.png");
-		two = new Texture("mp2.png");
-		frames = new Texture[2];
-		frames[0] = one;
-		frames[1] = two;
-		animation = new Animation<Texture>(0.2f, frames);
-		animation.setPlayMode(PlayMode.LOOP);
+		if (type.equals("spider")) {
+			
+			Texture one;
+			Texture two;
+			Texture[] frames;
 		
-		MinY = 64;
-		MaxY = 700 - one.getHeight() - 64;
+			one = new Texture("mp1.png");
+			two = new Texture("mp2.png");
+			frames = new Texture[2];
+			frames[0] = one;
+			frames[1] = two;
+			r = new Rectangle(x, y, one.getWidth(), one.getHeight());
+			animation = new Animation<Texture>(0.2f, frames);
+			animation.setPlayMode(PlayMode.LOOP);
+		
+			MinY = 64;
+			MaxY = 700 - one.getHeight() - 64;
+			
+		} else if (type.equals("monster1")) {
+			
+			Texture one;
+			Texture two;
+			Texture three;
+			Texture[] frames;
+		
+			one = new Texture("A1.png");
+			two = new Texture("A2.png");
+			three = new Texture("A3.png");
+			frames = new Texture[2];
+			r = new Rectangle(x, y, two.getWidth(), two.getHeight());
+			frames[0] = two;
+			frames[1] = three;
+			animation = new Animation<Texture>(0.4f, frames);
+			animation.setPlayMode(PlayMode.LOOP);
+		
+			MinY = 64;
+			MaxY = 700 - one.getHeight() - 64;
+			
+		}
 		
 		elapsedtime = 0;
 		
@@ -51,6 +81,10 @@ public abstract class EnemyController {
 			
 			y += (speed * dir);
 			batch.draw(animation.getKeyFrame(elapsedtime), x, y);
+			r.x = x;
+			r.y = y;
+			r.width = animation.getKeyFrame(elapsedtime).getWidth();
+			r.height = animation.getKeyFrame(elapsedtime).getHeight();
 		
 			x -= speed;
 		
@@ -63,6 +97,38 @@ public abstract class EnemyController {
 			
 				dir *= -1;
 			
+			}
+			
+		} else if (type.equals("monster1")) {
+			
+			batch.draw(animation.getKeyFrame(elapsedtime), x, y);
+			r.x = x;
+			r.y = y;
+			r.width = animation.getKeyFrame(elapsedtime).getWidth();
+			r.height = animation.getKeyFrame(elapsedtime).getHeight();
+			
+			if (x < MGame.player.x) {
+				
+				x += speed;
+				
+			}
+			
+			if (x > MGame.player.x) {
+				
+				x -= speed;
+				
+			}
+			
+			if (y < MGame.player.y) {
+				
+				y += speed;
+				
+			}
+			
+			if (y > MGame.player.y) {
+				
+				y -= speed;
+				
 			}
 			
 		}
