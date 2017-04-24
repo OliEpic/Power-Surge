@@ -29,7 +29,7 @@ public class Spawner {
 				
 			}
 			
-		}, InitialDelaySpider, 5);
+		}, InitialDelaySpider, 2);
 		
 		SpawnMonster1.scheduleTask(new Task() {
 
@@ -43,7 +43,7 @@ public class Spawner {
 				
 			}
 			
-		}, InitialDelayMonster1, 10);
+		}, InitialDelayMonster1, 5);
 		
 	}
 	
