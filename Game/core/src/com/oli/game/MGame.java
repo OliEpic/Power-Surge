@@ -32,10 +32,16 @@ public class MGame extends GameScreen {
 	UI ui;
 	public static MusicController music;
 	Ded ded;
-	Spawner spawner;
+	public static Spawner spawner;
+	boolean musicon;
+	public static boolean soundon;
 
-	public MGame(Main game) {
+	public MGame(Main game, boolean musicon, boolean soundon) {
 		super(game);
+		
+		this.musicon = musicon;
+		this.soundon = soundon;
+		
 	}
 	
 	@Override
@@ -64,9 +70,11 @@ public class MGame extends GameScreen {
 		Track1 = AllTracks.get(0);
 		Track2 = AllTracks.get(1);*/
 		
+		if (musicon) {
 		
-		//TODO re-enable music
-		//music.play();
+			music.play();
+			
+		}
 		
 	}
 	
@@ -102,6 +110,30 @@ public class MGame extends GameScreen {
 			
 			b.render(batch);
 			
+			for (Spider e : spiders) {
+				
+				if (b.rect.intersects(e.r)) {
+					
+					spiders.removeValue(e, true);
+					bullets.removeValue(b, true);
+					score ++;
+					
+				}
+				
+			}
+			
+			for (Monster1 m : monster1s) {
+				
+				if (b.rect.intersects(m.r)) {
+					
+					monster1s.removeValue(m, true);
+					bullets.removeValue(b, true);
+					score ++;
+					
+				}
+				
+			}
+			
 		}
 		
 		for (Spider e : spiders) {
@@ -136,7 +168,7 @@ public class MGame extends GameScreen {
 		
 		if (player.health <= 0) {
 			
-			game._ScreenManager.SetScreen(ded = new Ded(game, score));
+			game._ScreenManager.SetScreen(ded = new Ded(game, score, musicon, soundon));
 			
 			
 		}

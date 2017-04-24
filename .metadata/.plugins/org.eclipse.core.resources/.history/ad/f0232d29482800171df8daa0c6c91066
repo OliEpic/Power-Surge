@@ -1,7 +1,0 @@
-package com.oli.menu;
-
-import com.oli.main.GameScreen;
-
-public class Ded extends GameScreen {
-
-}

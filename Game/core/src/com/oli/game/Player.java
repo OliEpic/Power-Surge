@@ -113,7 +113,13 @@ public class Player  {
 			if (CanShoot) {
 			
 				MGame.bullets.add(new Bullet(x + one.getWidth(), y + 70));
-				MGame.music.PlayShoot();
+				
+				if (MGame.soundon) {
+				
+					MGame.music.PlayShoot();
+					
+				}
+				
 				CanShoot = false;
 				
 			}

@@ -17,11 +17,15 @@ public class MainMenu extends GameScreen {
 	Texture exit;
 	SpriteBatch batch;
 	Main game;
+	boolean soundon;
+	boolean musicon;
 	
-	public MainMenu(Main game) {
+	public MainMenu(Main game, boolean musicon, boolean soundon) {
 		super(game);
 		
 		this.game = game;
+		this.soundon = soundon;
+		this.musicon = musicon;
 	}
 	
 	@Override
@@ -51,13 +55,15 @@ public class MainMenu extends GameScreen {
 		
 		if (Gdx.input.isKeyJustPressed(Keys.P)) {
 			
-			game._ScreenManager.SetScreen(new MGame(game));
+			System.out.println(soundon);
+			
+			game._ScreenManager.SetScreen(new MGame(game, musicon, soundon));
 			
 		}
 
 		if (Gdx.input.isKeyJustPressed(Keys.O)) {
 			
-			game._ScreenManager.SetScreen(new Options(game));
+			game._ScreenManager.SetScreen(new Options(game, musicon, soundon));
 			
 		}
 		

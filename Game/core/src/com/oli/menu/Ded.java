@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Align;
+import com.oli.game.MGame;
 import com.oli.main.GameScreen;
 import com.oli.main.Main;
 
@@ -18,11 +19,15 @@ public class Ded extends GameScreen {
 	GlyphLayout layout;
 	CharSequence chars;
 	Texture texture;
+	boolean musicon;
+	boolean soundon;
 	
-	public Ded(Main game, int score) {
+	public Ded(Main game, int score, boolean musicon, boolean soundon) {
 		super(game);
 		
 		this.score = score;
+		this.musicon = musicon;
+		this.soundon = soundon;
 		
 	}
 	
@@ -45,6 +50,15 @@ public class Ded extends GameScreen {
 		
 		batch.draw(texture, 0, 0);
 		font.draw(batch, layout, 640, 350);
+		
+		if (Gdx.input.isTouched()) {
+			
+			MGame.music.stop();
+			MGame.spawner.SpawnMonster1.clear();
+			MGame.spawner.SpawnSpider.clear();
+			game._ScreenManager.SetScreen(new MGame(game, musicon, soundon));
+			
+		}
 		
 		batch.end();
 		

@@ -21,7 +21,7 @@ public class SplashScreen extends GameScreen {
 		
 		batch = new SpriteBatch();
 		splash = new Texture("Logo.png");
-		menu = new MainMenu(game);
+		menu = new MainMenu(game, true, true);
 		
 	}
 	

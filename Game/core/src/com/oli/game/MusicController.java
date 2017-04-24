@@ -26,6 +26,13 @@ public class MusicController {
 		
 	}
 	
+	public void stop() {
+		
+		one.stop();
+		one.dispose();
+		
+	}
+	
 	public void PlayShoot() {
 		
 		shoot.play();

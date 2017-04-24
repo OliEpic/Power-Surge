@@ -1,5 +1,6 @@
 package com.oli.game;
 
+import java.awt.Rectangle;
 import java.util.Random;
 
 import com.badlogic.gdx.graphics.Texture;
@@ -13,6 +14,7 @@ public abstract class BulletClass {
 	Texture one;
 	Texture two;
 	Texture bullet;
+	Rectangle rect;
 	
 	public BulletClass(int x, int y) {
 		
@@ -22,6 +24,7 @@ public abstract class BulletClass {
 		one = new Texture("0.png");
 		two = new Texture("1.png");
 		r = new Random();
+		rect = new Rectangle(x, y, one.getWidth(), one.getHeight());
 		int i = r.nextInt(2);
 
 		if (i == 0) {
@@ -43,6 +46,8 @@ public abstract class BulletClass {
 		x += 5;
 		
 		batch.draw(bullet, x, y);
+		rect.x = x;
+		rect.y = y;
 		
 	}
 

@@ -7,8 +7,8 @@ import com.badlogic.gdx.utils.Timer.Task;
 
 public class Spawner {
 	
-	Timer SpawnSpider;
-	Timer SpawnMonster1;
+	public Timer SpawnSpider;
+	public Timer SpawnMonster1;
 	Random r;
 	
 	public Spawner(int InitialDelaySpider, int InitialDelayMonster1) {
