@@ -20,7 +20,7 @@ public class SplashScreen extends GameScreen {
 	public void show() {
 		
 		batch = new SpriteBatch();
-		splash = new Texture("Logo.png");
+		splash = new Texture("logo.png");
 		menu = new MainMenu(game, true, true);
 		
 	}
